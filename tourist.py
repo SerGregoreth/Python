@@ -50,6 +50,7 @@ add_attraction('Cairo, Egypt', ['Pyrimids of Giza', ['monument', 'historical sit
 add_attraction('Cairo, Egypt', ['Egyptian Museum', ['museum']])
 #print(attractions)
 
+#this will find attractions that match the interest inputted
 def find_attractions(destination, interests):
     dest_i = get_destination_i(destination)
     attractions_in_city = attractions[dest_i]
@@ -65,5 +66,18 @@ def find_attractions(destination, interests):
                     continue
     return attractions_with_interest
 
-la_arts = find_attractions('Los Angeles, USA', ['art'])
-print(la_arts)
+#la_arts = find_attractions('Los Angeles, USA', ['art'])
+#print(la_arts)
+
+def get_attractions_for_travelers(traveler):
+    traveler_dest = traveler[1]
+    traveler_interest = traveler[2]
+    traveler_attractions = find_attractions(traveler_dest, traveler_interest)
+    interest_str = 'Hi, ' + traveler[0] + ', we think you will like these places around ' + traveler[1] + ': '
+    for attraction in traveler_attractions:
+        interest_str = interest_str + str(attraction)
+    interest_str = interest_str + '.'
+    return interest_str
+
+traveler_recomendation = get_attractions_for_travelers(traveler_tst)
+print(traveler_recomendation)
